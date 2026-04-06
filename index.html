@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.8.1.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre class="western">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;ZONE CARD XSUP&lt;/title&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot;&gt;
+  &lt;meta name=&quot;theme-color&quot; content=&quot;#1e40af&quot;&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot; rel=&quot;stylesheet&quot;&gt;
+
+  &lt;style&gt;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #1e40af);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+    .container {
+      padding: 20px 16px 90px;
+      max-width: 480px;
+      margin: auto;
+    }
+    .zone-box,.card,.form-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    }
+    .card { cursor: pointer; }
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 14px;
+      display: block;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-top: 6px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      background: #f8fafc;
+      font-size: 15px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #2563eb;
+      background: #fff;
+    }
+    h3 {
+      margin: 0;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3::before { content: &quot;📋&quot;; }
+    p { margin: 6px 0 0; color: #64748b; font-size: 14px; }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    button.submit {
+      margin-top: 20px;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.submit:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #e2e8f0;
+    }
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+      color: #64748b;
+    }
+    .nav-item i { font-size: 26px; display: block; }
+
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .loading-overlay.active { display: flex; }
+    .loading-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .spinner {
+      border: 4px solid #f3f4f6;
+      border-top: 4px solid #2563eb;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      animation: spin 1s linear infinite;
+      margin: auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;header&gt;FORM MANAGEMENT&lt;/header&gt;
+
+&lt;div class=&quot;loading-overlay&quot; id=&quot;loadingOverlay&quot;&gt;
+  &lt;div class=&quot;loading-content&quot;&gt;
+    &lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt;
+    &lt;p&gt;Memproses data...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;container&quot;&gt;
+
+  &lt;div class=&quot;zone-box&quot;&gt;
+    &lt;label&gt;ZONE&lt;/label&gt;
+    &lt;input id=&quot;zone&quot; placeholder=&quot;Harus di isi&quot; required&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;home&quot; class=&quot;page active&quot;&gt;
+    &lt;div class=&quot;card&quot; onclick=&quot;openPage('firstCounting')&quot;&gt;
+      &lt;h3&gt;FIRST COUNTING&lt;/h3&gt;
+      &lt;p&gt;Take Firstcount&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card&quot; onclick=&quot;openPage('scanning')&quot;&gt;
+      &lt;h3&gt;SCANNING&lt;/h3&gt;
+      &lt;p&gt;Take Scanning&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;firstCounting&quot; class=&quot;page&quot;&gt;
+    &lt;div class=&quot;form-card&quot;&gt;
+      &lt;h3&gt;FIRST COUNTING&lt;/h3&gt;
+      &lt;label&gt;Counter Name&lt;/label&gt;
+      &lt;input id=&quot;fc_counter&quot;&gt;
+      &lt;label&gt;Time In&lt;/label&gt;
+      &lt;input type=&quot;time&quot; id=&quot;fc_time_in&quot;&gt;
+      &lt;label&gt;Time Out&lt;/label&gt;
+      &lt;input type=&quot;time&quot; id=&quot;fc_time_out&quot;&gt;
+      &lt;label&gt;Checked&lt;/label&gt;
+      &lt;input id=&quot;fc_checked&quot;&gt;
+      &lt;button class=&quot;submit&quot; onclick=&quot;submitData(this)&quot;&gt;SUBMIT&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;scanning&quot; class=&quot;page&quot;&gt;
+    &lt;div class=&quot;form-card&quot;&gt;
+      &lt;h3&gt;SCANNING&lt;/h3&gt;
+      &lt;label&gt;Scanner Name&lt;/label&gt;
+      &lt;input id=&quot;scan_name&quot;&gt;
+      &lt;label&gt;Time In&lt;/label&gt;
+      &lt;input type=&quot;time&quot; id=&quot;scan_time_in&quot;&gt;
+      &lt;label&gt;Time Out&lt;/label&gt;
+      &lt;input type=&quot;time&quot; id=&quot;scan_time_out&quot;&gt;
+      &lt;button class=&quot;submit&quot; onclick=&quot;submitData(this)&quot;&gt;SUBMIT&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class=&quot;bottom-nav&quot;&gt;
+  &lt;div class=&quot;nav-item&quot; onclick=&quot;goBack()&quot;&gt;&lt;i class=&quot;material-icons&quot;&gt;arrow_back&lt;/i&gt;Back&lt;/div&gt;
+  &lt;div class=&quot;nav-item&quot; onclick=&quot;openPage('home')&quot;&gt;&lt;i class=&quot;material-icons&quot;&gt;home&lt;/i&gt;Home&lt;/div&gt;
+  &lt;div class=&quot;nav-item&quot; onclick=&quot;openSheet()&quot;&gt;&lt;i class=&quot;material-icons&quot;&gt;table_view&lt;/i&gt;Sheet&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwcMaIahM5suFWQhZ4e1MVGptmfEmzlB5UjogD_-oUebMe8RzYVQKU5S7x4JN9HjZB8qA/exec';
+const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1seFxyBxAhPmGLHcJBefeu4Ror-yeKA4P/edit';
+
+let historyPage = ['home'];
+
+function openPage(page) {
+  document.querySelectorAll('.page').forEach(p =&gt; p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  if (historyPage.at(-1) !== page) historyPage.push(page);
+}
+
+function goBack() {
+  historyPage.pop();
+  openPage(historyPage.pop() || 'home');
+}
+
+function openSheet() {
+  window.open(SPREADSHEET_URL, '_blank');
+}
+
+function showLoading() {
+  document.getElementById('loadingOverlay').classList.add('active');
+}
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+function submitData(btn) {
+  if (!zone.value.trim()) {
+    alert('ZONE wajib diisi');
+    return;
+  }
+
+  const page = document.querySelector('.page.active').id;
+  let payload = { zone: zone.value.trim() };
+
+  if (page === 'firstCounting') {
+    payload.fc_counter = fc_counter.value;
+    payload.fc_time_in = fc_time_in.value;
+    payload.fc_time_out = fc_time_out.value;
+    payload.fc_checked = fc_checked.value;
+  }
+
+  if (page === 'scanning') {
+    payload.scan_name = scan_name.value;
+    payload.scan_time_in = scan_time_in.value;
+    payload.scan_time_out = scan_time_out.value;
+  }
+
+  btn.disabled = true;
+  showLoading();
+
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(r =&gt; r.json())
+  .then(r =&gt; {
+    hideLoading();
+    btn.disabled = false;
+    alert(r.message);
+    if (r.success) openPage('home');
+  })
+  .catch(() =&gt; {
+    hideLoading();
+    btn.disabled = false;
+    alert('Gagal terhubung ke server');
+  });
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () =&gt; {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
